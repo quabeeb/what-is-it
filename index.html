@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project Skywriter: Chromatic Radar Decoder</title>
+  <meta name="description" content="Solve the 3 telemetry coding problems to unlock 3 green checkmarks and authorize the aerial flyover airshow!" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Top Navbar -->
+  <header class="navbar">
+    <div class="nav-left">
+      <div class="brand">
+        <span class="brand-icon">✈️</span>
+        <span>Project Skywriter</span>
+      </div>
+    </div>
+
+    <!-- Center View Switcher Tabs -->
+    <div class="nav-center">
+      <div class="view-switcher">
+        <button id="navBtnCode" class="view-tab-btn active">
+          <span>💻 Code Workspace</span>
+        </button>
+        <button id="navBtnRadar" class="view-tab-btn">
+          <span class="pulse-dot-sm"></span>
+          <span>✈️ Flight Radar Stage</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="nav-right">
+      <button id="btnSoundToggle" class="btn btn-ghost" title="Toggle Sound">
+        <span id="soundIcon">🔊</span> <span id="soundText">Sound ON</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Viewport (Tabbed between Code Workspace & Flight Radar Stage) -->
+  <main class="app-views-container">
+
+    <!-- VIEW 1: Code Workspace (Spacious 2-Column IDE) -->
+    <div class="app-view active" id="viewCode">
+      <div class="code-workspace-grid">
+
+        <!-- Left Sub-Column: Briefing & Logic Rules -->
+        <aside class="code-briefing-col">
+          <section class="briefing-card">
+            <div class="briefing-header">
+              <h1 class="briefing-title">Authorize Stunt Flight Paths</h1>
+              <p class="briefing-subtitle">
+                Implement <code>countBits</code>, <code>digitSum</code>, and <code>classifyCell</code>. Test your code or run the radar airshow anytime to guess &amp; check live in the stadium!
+              </p>
+            </div>
+
+        <!-- Logic Rules -->
+        <div class="rules-stack">
+          <div class="rule-box red-rule">
+            <div class="rule-badge badge-red">🔴 Squadron Alpha (Red)</div>
+            <div class="rule-detail">
+              • <strong>Squadron Alpha paints a cell if:</strong> the number of binary 1-bits in <code>val</code> is odd (<code>countBits(val) % 2 === 1</code>)
+            </div>
+          </div>
+
+          <div class="rule-box blue-rule">
+            <div class="rule-badge badge-blue">🔵 Squadron Bravo (Blue)</div>
+            <div class="rule-detail">
+              • <strong>Squadron Bravo paints a cell if:</strong> the sum of its decimal digits is divisible by 3 (<code>digitSum(val) % 3 === 0</code>)
+            </div>
+          </div>
+
+          <div class="rule-box purple-rule">
+            <div class="rule-badge badge-purple">🟣 Reaction Rule</div>
+            <div class="rule-detail">
+              • <strong>Chemical reaction:</strong> When <strong>BOTH</strong> Squadron Alpha and Squadron Bravo paint a cell, the colors react and ignite into <code>"purple"</code>!
+            </div>
+          </div>
+
+          <div class="rule-box classify-rule">
+            <div class="rule-badge badge-gold">📋 Problem 3: classifyCell(val)</div>
+            <div class="rule-detail">
+              • <strong>Both Alpha &amp; Bravo paint:</strong> return <code>"purple"</code> (Reaction Rule)<br>
+              • <strong>Squadron Alpha only paints:</strong> return <code>"red"</code><br>
+              • <strong>Squadron Bravo only paints:</strong> return <code>"blue"</code><br>
+              • <strong>Neither squadron paints:</strong> return <code>"empty"</code>
+            </div>
+
+            <!-- Integrated Quick Examples -->
+            <div class="reaction-examples">
+              <div class="example-title">💡 Quick Examples:</div>
+              <div class="example-list">
+                <div><code>val = 84</code> &rarr; Alpha paints ✅, Bravo paints ✅ &rarr; <strong style="color:#f472b6;">"purple"</strong></div>
+                <div><code>val = 7</code> &rarr; Alpha paints ✅, Bravo doesn't ❌ &rarr; <strong style="color:#f87171;">"red"</strong></div>
+                <div><code>val = 12</code> &rarr; Alpha doesn't ❌, Bravo paints ✅ &rarr; <strong style="color:#38bdf8;">"blue"</strong></div>
+                <div><code>val = 10</code> &rarr; Neither paints ❌ &rarr; <strong style="color:#94a3b8;">"empty"</strong></div>
+              </div>
+            </div>
+          </div>
+        </div>
+          </section>
+        </aside>
+
+        <!-- Right Sub-Column: 3 Problem Tabs, Editor & Test Suites -->
+        <section class="code-editor-col">
+          <div class="tabbed-editor-card">
+            
+            <!-- 3 Problem Tabs Bar -->
+            <div class="editor-tabs-bar">
+          <button id="tabBtn1" class="tab-item active">
+            <span class="tab-badge">1</span>
+            <span class="tab-title">countBits</span>
+          </button>
+          
+          <button id="tabBtn2" class="tab-item">
+            <span class="tab-badge">2</span>
+            <span class="tab-title">digitSum</span>
+          </button>
+          
+          <button id="tabBtn3" class="tab-item">
+            <span class="tab-badge">3</span>
+            <span class="tab-title">classifyCell</span>
+          </button>
+        </div>
+
+        <!-- TAB CONTENT 1: countBits(n) -->
+        <div class="editor-tab-content active" id="tabContent1">
+          <div class="tab-instruction">
+            <strong>Problem 1: countBits(n)</strong> &mdash; Count and return the number of set <code>1</code>-bits in <code>n</code>'s binary representation (used to determine if Squadron Alpha paints a cell).
+          </div>
+          <div class="func-header">
+            <div class="func-signature">
+              <span class="kw">function</span> <span class="fn-name">countBits</span>(<span class="param">n</span>) {
+            </div>
+          </div>
+          <div class="pane-editor-area">
+            <div id="lines1" class="pane-lines">1<br>2<br>3<br>4<br>5<br>6<br>7<br>8</div>
+            <textarea id="editorCountBits" class="pane-input" spellcheck="false"></textarea>
+          </div>
+          <div class="func-footer">}</div>
+
+          <!-- Unit Test Bar for Tab 1 -->
+          <div class="tab-test-bar">
+            <div class="test-pills">
+              <span class="test-pill" id="pill1_1">countBits(7) = 3</span>
+              <span class="test-pill" id="pill1_2">countBits(84) = 3</span>
+              <span class="test-pill" id="pill1_3">countBits(255) = 8</span>
+              <span class="test-pill" id="pillSuite1">🎲 100 Random Tests</span>
+            </div>
+            <button id="btnTest1" class="btn btn-secondary btn-xs">
+              🧪 Test Problem 1
+            </button>
+          </div>
+        </div>
+
+        <!-- TAB CONTENT 2: digitSum(n) -->
+        <div class="editor-tab-content" id="tabContent2">
+          <div class="tab-instruction">
+            <strong>Problem 2: digitSum(n)</strong> &mdash; Calculate and return the sum of decimal digits of integer <code>n</code> (used to determine if Squadron Bravo paints a cell).
+          </div>
+          <div class="func-header">
+            <div class="func-signature">
+              <span class="kw">function</span> <span class="fn-name">digitSum</span>(<span class="param">n</span>) {
+            </div>
+          </div>
+          <div class="pane-editor-area">
+            <div id="lines2" class="pane-lines">1<br>2<br>3<br>4<br>5<br>6<br>7<br>8</div>
+            <textarea id="editorDigitSum" class="pane-input" spellcheck="false"></textarea>
+          </div>
+          <div class="func-footer">}</div>
+
+          <!-- Unit Test Bar for Tab 2 -->
+          <div class="tab-test-bar">
+            <div class="test-pills">
+              <span class="test-pill" id="pill2_1">digitSum(21) = 3</span>
+              <span class="test-pill" id="pill2_2">digitSum(84) = 12</span>
+              <span class="test-pill" id="pill2_3">digitSum(1234) = 10</span>
+              <span class="test-pill" id="pillSuite2">🎲 100 Random Tests</span>
+            </div>
+            <button id="btnTest2" class="btn btn-secondary btn-xs">
+              🧪 Test Problem 2
+            </button>
+          </div>
+        </div>
+
+        <!-- TAB CONTENT 3: classifyCell(val) -->
+        <div class="editor-tab-content" id="tabContent3">
+          <div class="tab-instruction">
+            <strong>Problem 3: classifyCell(val)</strong> &mdash; Determine which squadrons paint cell <code>val</code>: return <code>"purple"</code> (both Alpha &amp; Bravo paint), <code>"red"</code> (Squadron Alpha only paints), <code>"blue"</code> (Squadron Bravo only paints), or <code>"empty"</code> (neither squadron paints).
+          </div>
+          <div class="func-header">
+            <div class="func-signature">
+              <span class="kw">function</span> <span class="fn-name">classifyCell</span>(<span class="param">val</span>) {
+            </div>
+          </div>
+          <div class="pane-editor-area">
+            <div id="lines3" class="pane-lines">1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10</div>
+            <textarea id="editorClassifyCell" class="pane-input" spellcheck="false"></textarea>
+          </div>
+          <div class="func-footer">}</div>
+
+          <!-- Unit Test Bar for Tab 3 -->
+          <div class="tab-test-bar">
+            <div class="test-pills">
+              <span class="test-pill" id="pill3_1">classifyCell(84) = "purple"</span>
+              <span class="test-pill" id="pill3_2">classifyCell(7) = "red"</span>
+              <span class="test-pill" id="pill3_3">classifyCell(12) = "blue"</span>
+              <span class="test-pill" id="pillSuite3">🎲 100 Random Tests</span>
+            </div>
+            <button id="btnTest3" class="btn btn-secondary btn-xs">
+              🧪 Test Problem 3
+            </button>
+          </div>
+        </div>
+
+        <!-- Action Bar: Test & Run Airshow (Always Available) -->
+        <div class="action-bar">
+          <div class="action-buttons">
+            <button id="btnVerifyAll" class="btn btn-submit-lg">
+              ✈️ Run Radar Airshow
+            </button>
+            <button id="btnGoToRadar" class="btn btn-secondary">
+              ✈️ View Radar Stage
+            </button>
+            <button id="btnResetCode" class="btn btn-ghost">
+              Reset
+            </button>
+            <button id="btnNoCode" class="btn btn-no-code" title="Auto-fill functions with working solutions so you can watch the airshow immediately">
+              🐣 I don't know how to code
+            </button>
+            <span id="autoSaveIndicator" class="autosave-indicator" title="Your code is automatically saved in your browser">💾 Auto-saved</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </div>
+</div>
+
+    <!-- VIEW 2: Flight Radar Stage (Expansive Full-Width Stadium Radar) -->
+    <div class="app-view" id="viewRadar">
+      <div class="radar-section">
+        <div class="radar-header">
+          <div class="radar-title-group">
+            <button id="btnBackToCode" class="btn btn-secondary btn-sm">
+              ⬅️ Back to Code
+            </button>
+            <h2>✈️ Flight Radar Stage</h2>
+          </div>
+        </div>
+
+        <!-- Radar Canvas Container (Min Height >= 660px) -->
+        <div class="radar-stage-container" id="radarContainer">
+          <canvas id="flightCanvas"></canvas>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Scripts -->
+  <script src="matrix.js"></script>
+  <script src="audio.js"></script>
+  <script src="planes.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
